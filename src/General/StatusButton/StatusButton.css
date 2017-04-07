@@ -1,5 +1,5 @@
 :global .btn[disabled] {
-  cursor: wait !important;
+  cursor: wait!important;;
 }
 
 .StatusButton {
@@ -46,6 +46,8 @@
   }
 
   &.success {
+    cursor: default!important;
+
     .animate {
       opacity: .2;
       animation: success .3s 1 forwards;
@@ -53,6 +55,8 @@
   }
 
   &.danger {
+    cursor: default!important;
+
     .animate {
       opacity: .2;
       animation: error .3s 1 forwards;

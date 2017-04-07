@@ -26,6 +26,7 @@ class StatusButton extends Component {
     timeout: 2000,
     tag: Button,
   };
+
   static propTypes = {
     status: React.PropTypes.string,
     children: PropTypes.any,
@@ -35,33 +36,43 @@ class StatusButton extends Component {
     timeout: PropTypes.number,
     tag: PropTypes.any,
   };
+
   constructor(props) {
     super(props);
+   
     this.state = {
       status: props.promise ? BUTTON_STATUS.loading : props.status,
     };
     this.resolvePromise(props.promise);
   }
+
   componentWillReceiveProps(nextProps) {
     this.resolvePromise(nextProps.promise);
+    
     if (!nextProps.promise) {
       this.setState({ status: nextProps.status });
     }
   }
+
   resolvePromise(promise) {
     const { status } = this.state;
-    if (!promise) return;
+    if (!promise) 
+      return;
+    
     if (status !== BUTTON_STATUS.loading) {
       this.setState({ status: BUTTON_STATUS.loading });
     }
+
     promise
       .then(() => this.finishStatus(BUTTON_STATUS.success))
       .catch(() => this.finishStatus(BUTTON_STATUS.error));
   }
+
   finishStatus(status) {
     this.setState({ status });
     setTimeout(() => this.setState({ status: '' }), this.props.timeout);
   }
+
   convertStatus(status) {
     switch (status) {
       case 'loading':
@@ -74,6 +85,7 @@ class StatusButton extends Component {
         return '';
     }
   }
+  
   render() {
     const { status } = this.state;
     const { children, tag: Tag, bsStyle, styleName } = this.props;
