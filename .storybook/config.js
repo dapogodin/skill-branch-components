@@ -1,7 +1,8 @@
 import { config } from 'storybox';
 config({
   options: {
-    name: 'lsk-general',
+    name: 'skb-components by lsk',
+    url: 'https://github.com/dapogodin/skill-branch-components',
   },
   backgrounds: null,
   knob: true,
